@@ -10,8 +10,7 @@ describe StatsdTestHarness::Tool do
         :command => "bundle exec rspec",
         :options => "--format documentation",
         :label   => "rspec_test",
-        :ignore_return_value => true,
-        :postprocessor => StatsdTestHarness::Postprocessors::RSpec
+        :ignore_return_value => true
       )
     }
 
@@ -33,10 +32,6 @@ describe StatsdTestHarness::Tool do
 
     it "sets its ignore_return_value flag" do
       expect(tool.ignore_return_value).to be_truthy
-    end
-
-    it "sets its postprocessor" do
-      expect(tool.postprocessor).to eq(StatsdTestHarness::Postprocessors::RSpec)
     end
 
   end

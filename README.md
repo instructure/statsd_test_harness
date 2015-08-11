@@ -39,34 +39,7 @@ You must specify a config file at runtime:
 
 For an example of what the config file should look like, refer to config/sample_config.rb
 
-## Jasmine Configuration
-
-Start by installing jasmine-terminal-reporter:
-
-    npm install jasmine-terminal-reporter
-
-Then add to your jasmine spec runner:
-
-    var Reporter = require('jasmine-terminal-reporter');
-    var reporter = new Reporter(options)
-
-## Development
-
-To add support for a new test suite, create a file in statsd_test_harness/postprocessors/ that will extract the duration output
-from the testing framework. Follow statsd_test_harness/postprocessors/rspec.rb for an example.
-
-To register the postprocessor, add it to the `config.tools` array in your config file, e.g.
-
-    {
-      name: 'my_framework',
-      command: 'test',
-      label: 'my_framework',
-      options: '',
-      ignore_return_value: true,
-      postprocessor: StatsdTestHarness::Postprocessors::MyPostProcessor
-    }
-
-Set the `ignore_return_value` flag to false if you don't want to report an unsuccessful test run (based on exit status).
+In your config file, set the `ignore_return_value` flag to false if you don't want to report an unsuccessful test run (based on exit status).
 
 ## Contributing
 

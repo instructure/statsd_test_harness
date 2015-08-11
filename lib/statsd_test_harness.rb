@@ -21,7 +21,7 @@ module StatsdTestHarness
   end
 
   class Configuration
-    attr_accessor :tools, :statsd_host, :statsd_port, :statsd_app_name, :statsd_namespace
+    attr_accessor :tools, :host, :port, :app_name, :namespace
   end
 
 end
