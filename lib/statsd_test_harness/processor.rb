@@ -13,11 +13,10 @@ module StatsdTestHarness
     def run
       StatsdTestHarness.config.tools.each do |tool_harness|
         tool = Tool.new(tool_harness)
-        puts "Executing #{tool.label} test suite for #{StatsdTestHarness.config.app_name}..."
-        if duration = with_timing{tool.run}
-          StatsdTestHarness::Client.new.post(duration, tool.name)
-          puts "Test suite for #{tool.label} completed in #{duration} ms."
-        end
+        puts "Executing #{tool.name} test suite for #{StatsdTestHarness.config.app_name}..."
+        duration = with_timing{tool.run}
+        StatsdTestHarness::Client.new.post(duration, tool.name)
+        puts "Test suite for #{tool.name} completed in #{duration} ms."
       end
     end
 

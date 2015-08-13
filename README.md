@@ -1,6 +1,6 @@
 # StatsdTestHarness
 
-A test harness that captures output of various testing frameworks to post to statsd.
+A test harness that captures output of various testing frameworks to post to a statsd server.
 
 ## Installation
 
@@ -29,17 +29,29 @@ Set the following environment variables for statsd integration:
 
 ## Usage
 
-To start a graphite/statsd docker file:
-
-    docker run -d --name graphite --restart=always -p 80:80 -p 2003:2003 -p 8125:8125/udp hopsoft/graphite-statsd -e VIRTUAL_HOST=graphite.docker
-
 You must specify a config file at runtime:
 
     wrap run_suite --config path/to/config/file.rb
 
 For an example of what the config file should look like, refer to config/sample_config.rb
 
-In your config file, set the `ignore_return_value` flag to false if you don't want to report an unsuccessful test run (based on exit status).
+To register a new test framework, add it to the `config.tools` array in your config file, e.g.
+
+    {
+      name: 'my_framework',
+      command: 'test',
+      label: 'my_framework',
+      options: '',
+      ignore_return_value: true
+    }
+
+Set the `ignore_return_value` flag to false if you don't want to report an unsuccessful test run (based on exit status).
+
+## Development
+
+To start a graphite/statsd docker container for testing purposes:
+
+    docker run -d --name graphite --restart=always -p 80:80 -p 2003:2003 -p 8125:8125/udp hopsoft/graphite-statsd -e VIRTUAL_HOST=graphite.docker
 
 ## Contributing
 

@@ -1,7 +1,7 @@
 require 'dotenv'
 Dotenv.load
 
-StatsdTess.configure do |config|
+StatsdTestHarness.configure do |config|
   config.host      = ENV['STATSD_HOST']
   config.port      = ENV['STATSD_PORT']
   config.app_name  = ENV['STATSD_APP_NAME']
@@ -11,7 +11,7 @@ StatsdTess.configure do |config|
     {
       name: 'rspec',
       command: 'rspec',
-      options: '',
+      options: 'spec/models/conversation_spec.rb',
       ignore_return_value: true
     }
   ]
