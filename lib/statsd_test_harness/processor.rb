@@ -29,7 +29,7 @@ module StatsdTestHarness
         validate_env_variables
       rescue Exception => e
         puts "-- Invalid configuration, exiting: #{e}"
-        exit
+        exit 1
       end
     end
 
