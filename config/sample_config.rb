@@ -12,7 +12,7 @@ StatsdTestHarness.configure do |config|
       name: 'rspec',
       command: 'rspec',
       options: 'spec/models/conversation_spec.rb',
-      ignore_return_value: true
+      ignore_return_value: false
     }
   ]
 

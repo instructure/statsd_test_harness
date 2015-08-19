@@ -14,9 +14,13 @@ module StatsdTestHarness
       StatsdTestHarness.config.tools.each do |tool_harness|
         tool = Tool.new(tool_harness)
         puts "Executing #{tool.name} test suite for #{StatsdTestHarness.config.app_name}..."
-        duration = with_timing{tool.run}
-        StatsdTestHarness::Client.new.post(duration, tool.name)
+        exit_status, duration = with_timing{tool.run}
+        success = exit_status.to_i == 0
+        StatsdTestHarness::Client.new.post(duration, tool.name, success, !tool.ignore_return_value)
         puts "Test suite for #{tool.name} completed in #{duration} ms."
+        unless success || tool.ignore_return_value
+          exit exit_status
+        end
       end
     end
 
@@ -47,8 +51,8 @@ module StatsdTestHarness
 
     def with_timing
       start_time = Time.now.to_f
-      yield
-      (Time.now.to_f - start_time) * 1000
+      exit_status = yield
+      [exit_status, (Time.now.to_f - start_time) * 1000]
     end
 
   end

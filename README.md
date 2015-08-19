@@ -42,10 +42,10 @@ To register a new test framework, add it to the `config.tools` array in your con
       command: 'test',
       label: 'my_framework',
       options: '',
-      ignore_return_value: true
+      ignore_return_value: false
     }
 
-Set the `ignore_return_value` flag to false if you don't want to report an unsuccessful test run (based on exit status).
+Set the `ignore_return_value` flag to true if you don't want to report an unsuccessful test run (based on exit status).
 
 ## Development
 

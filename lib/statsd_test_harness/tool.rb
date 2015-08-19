@@ -15,11 +15,11 @@ module StatsdTestHarness
       cmd = open("| #{self.command} #{self.options}")
       cmd.each_line{ |io| print io }
       cmd.close
+      exit_status
+    end
 
-      if $?.to_i > 0 && ! ignore_return_value
-        raise "Test run returned non-zero status, results not submitted."
-      end
-      true
+    def exit_status
+      $?.exitstatus
     end
 
   end

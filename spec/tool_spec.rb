@@ -2,6 +2,25 @@ require 'spec_helper'
 
 describe StatsdTestHarness::Tool do
 
+  describe "run" do
+    let(:tool) {
+      StatsdTestHarness::Tool.new(
+        :name    => "simulated_failure",
+        :command => "echo 1",
+        :options => "",
+        :label   => "simulated_failure",
+        :ignore_return_value => false
+      )
+    }
+
+    it "returns exit status" do
+      allow(tool).to receive(:exit_status).and_return(1)
+      expect(tool.run).to eq(1)
+    end
+
+  end
+
+
   describe "initialization" do
 
     let(:tool) {
