@@ -6,8 +6,8 @@ require 'statsd_test_harness/version'
 Gem::Specification.new do |spec|
   spec.name          = "statsd_test_harness"
   spec.version       = StatsdTestHarness::VERSION
-  spec.authors       = ["CoralineAda"]
-  spec.email         = ["coraline@idolhands.com"]
+  spec.authors       = ["CoralineAda", "Instructure"]
+  spec.email         = ["coraline@idolhands.com", "eng@instructure.com"]
 
   spec.summary       = %q{Test harness for reporting to statsd.}
   spec.description   = %q{Captures output of various testing frameworks to post to statsd.}
