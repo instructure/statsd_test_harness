@@ -1,6 +1,3 @@
-require 'dotenv'
-Dotenv.load
-
 StatsdTestHarness.configure do |config|
   config.host      = ENV['STATSD_HOST']
   config.port      = ENV['STATSD_PORT']

@@ -1,6 +1,4 @@
 #!/usr/bin/env ruby
 require 'statsd_test_harness/cli'
-require 'dotenv'
-Dotenv.load
 
 StatsdTestHarness::CLI.start
